@@ -23,12 +23,32 @@ namespace WindowsPhone.Utilities.Test
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            InitializeDeviceProperties();
+            InitializeGPSProperties();
+        }
+
+        private void InitializeDeviceProperties()
+        {
             tblManufacturer.Text += Device.Properties.Manufacturer;
             tblDeviceID.Text += Device.Properties.DeviceID;
             tblWindowsLive.Text += Device.Properties.WindowsLiveAnonymousID;
             tblAppVersion.Text += Device.Properties.ApplicationVersion;
             tblInternetConnectivity.Text += Device.Properties.HasInternetConnectivity;
             tblSessionID.Text += Device.Properties.SessionID;
+        }
+
+        private void InitializeGPSProperties()
+        {
+            GPS.Instance.StatusChanged += (sender, e) =>
+            {
+                tblStatus.Text = e.Status.ToString();
+            };
+
+            GPS.Instance.PositionChanged += (sender, e) =>
+            {
+                tblLatitude.Text = e.Position.Location.Latitude.ToString();
+                tblLongitude.Text = e.Position.Location.Longitude.ToString();
+            };
         }
 
         private void SaveString_Click(object sender, RoutedEventArgs e)
@@ -64,6 +84,18 @@ namespace WindowsPhone.Utilities.Test
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             Storage.Settings.Delete("foo");
+        }
+
+        private void StartGPS_Click(object sender, RoutedEventArgs e)
+        {
+            GPS.Instance.Start();
+
+            tblAccuracy.Text = GPS.Instance.Accuracy.ToString();
+        }
+
+        private void StopGPS_Click(object sender, RoutedEventArgs e)
+        {
+            GPS.Instance.Stop();
         }
     }
 }

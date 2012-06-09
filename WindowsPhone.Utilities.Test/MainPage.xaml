@@ -17,9 +17,7 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!--Pivot Control-->
-        <controls:Pivot Title="WINDOWS PHONE UTILITIES">
-            <!--Pivot item one-->
+        <controls:Pivot Title="WINDOWS PHONE UTILITIES">            
             <controls:PivotItem Header="device">
                 <StackPanel>
                     <TextBlock Name="tblManufacturer" Text="Manufacturer: " />
@@ -30,8 +28,6 @@
                     <TextBlock Name="tblSessionID" Text="Session ID: " />
                 </StackPanel>
             </controls:PivotItem>
-
-            <!--Pivot item two-->
             <controls:PivotItem Header="storage">
                 <StackPanel>
                     <TextBlock Text="Key = foo" />
@@ -42,6 +38,28 @@
                     <Button Name="btnLoadString" Content="Load foo as string" Click="LoadString_Click" />
                     <Button Name="btnLoadInteger" Content="Load foo as integer" Click="LoadInteger_Click" />
                     <Button Name="btnDelete" Content="Delete foo value" Click="Delete_Click" />
+                </StackPanel>
+            </controls:PivotItem>
+            <controls:PivotItem Header="GPS">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Status: " />
+                        <TextBlock Name="tblStatus" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Accuracy: " />
+                        <TextBlock Name="tblAccuracy" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Latitude: " />
+                        <TextBlock Name="tblLatitude" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Longitude: " />
+                        <TextBlock Name="tblLongitude" />
+                    </StackPanel>
+                    <Button Name="btnStartGPS" Content="Start GPS" Click="StartGPS_Click" />
+                    <Button Name="btnStopGPS" Content="Stop GPS" Click="StopGPS_Click" />
                 </StackPanel>
             </controls:PivotItem>
         </controls:Pivot>
